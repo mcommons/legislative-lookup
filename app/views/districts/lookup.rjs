@@ -1,0 +1,29 @@
+page.hide 'notice'
+
+unless @message
+  marker_text = ''
+  @districts.each do | d | 
+     case d.level when 'federal'
+       marker_text += "<div class=\"federal\"> #{d.display_name} Congressional District</div>"
+     when 'state_upper'
+       marker_text += "<div class=\"state_upper\"> #{d.display_name} Upper House District</div>"
+     when 'state_lower'
+       marker_text += "<div class=\"state_lower\"> #{d.display_name} Lower House District</div>"
+     end
+  end
+  page << @map.clear_overlays
+  @polygons.each do | polygon |
+    page << @map.add_overlay(polygon)
+  end
+  
+  page << @map.add_overlay(GMarker.new([ @lat.to_f, @lng.to_f],:title => "Districts", :info_window => marker_text))
+
+  page << @map.set_center(@center,@zoom)
+  page.replace_html 'icons', :partial => 'icons'
+else
+  page.replace_html 'notice', @message
+  page.visual_effect :appear, 'notice', :duration => 0.5
+  page.replace_html 'icons', ''
+end
+	
+

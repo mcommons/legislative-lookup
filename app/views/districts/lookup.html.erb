@@ -1,0 +1,90 @@
+<h2>Legislative Lookup</h2>
+
+<script type="text/javascript">	
+  var geocoder = new GClientGeocoder();
+  function geocodeAddress(address) {
+    geocoder.getLatLng(
+      address,
+      function(point) {
+        if (!point) {
+          alert(address + " not found");
+        } else {
+          $('address_span').hide();
+          $('lat_lng').show();
+          $('lat').value = point.lat();
+          $('lng').value = point.lng(); 
+        }
+      }
+    );
+  }
+  
+  function clear_box(){
+    
+    $('address_span').show();
+    $('lat_lng').hide();
+  }
+
+</script>
+
+<div id="geo-box">
+  <% form_remote_tag do %>
+      <span id="address_span">
+        <p>
+          <label>Address</label>  
+          <input type="text" id="address" name="address"/>
+        </p>
+        
+          <input type="button" value="Geocode" onclick="geocodeAddress($('address').value)">
+      </span>
+      <span id="lat_lng" style="display:none;">
+        <p>
+          <label>Latitude</label>
+          <%= text_field_tag "lat", params[:lat] %>
+        </p>
+        <p>
+          <label>Longitude</label>
+          <%= text_field_tag "lng", params[:lng] %>
+        </p>
+        <%= submit_tag "Lookup" %>
+        <input type="button" value="Clear" onclick="clear_box()">
+        
+      </span>
+  <% end %>
+</div>
+
+  <%= @map.div %>
+  <div id="icons"></div>
+  <div id="notice" style="display:none;"></div>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<h4>API Documentation</h4>
+
+  This web service matches a latitude and longitude with the congressional and state legislative districts
+  for that location. It is provided free of charge with no warrantee. If you use this service
+  please cache your responses and behave responsibly. If you plan to send more than a few thousand queries
+  per day, let us know via the list before you start. 
+  <p>
+  Join our <a href="http://groups.google.com/group/mcommons-congress-api">low volume mailing list</a> for advance notice of API changes or to ask a question. 
+  </p>
+  <p class="api"> 
+    A query for a latitude and longitude:
+    <a class="api" href="http://congress.mcommons.com/districts/lookup.xml?lat=40.7145248&lng=-74.007073">http://congress.mcommons.com/districts/lookup.xml?lat=40.7145248&amp;lng=-74.007073</a>
+    <script src='http://pastie.org/337868.js'></script>
+  <p>
+    
+  <p class="api">
+    If no latitude and longitude is supplied:
+    <a class="api" href="http://congress.mcommons.com/districts/lookup.xml">http://congress.mcommons.com/districts/lookup.xml</a>
+    <script src='http://pastie.org/337850.js'></script>
+  </p>
+  <p class="api">
+    If the latitude and longitude is outside of the United States, and does not match
+    any legislative district geographies:
+    <a class="api" href="http://congress.mcommons.com/districts/lookup.xml?lat=64.835054&lng=147.646528">http://congress.mcommons.com/districts/lookup.xml?lat=64.835054&amp;lng=147.646528</a>
+    <script src='http://pastie.org/337847.js'></script>
+  </p>
