@@ -1,7 +1,7 @@
 class District < ActiveRecord::Base
   
   def self.lookup(lat, lng)
-    all(:conditions => "ST_Contains(the_geom, GeometryFromText('POINT(#{lng} #{lat})', -1))")
+    all(:conditions => ["ST_Contains(the_geom, GeometryFromText('POINT(? ?)', -1))",lng.to_f,lat.to_f])
   end
   
   def polygon
