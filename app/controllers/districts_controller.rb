@@ -4,7 +4,7 @@ class DistrictsController < ApplicationController
     @lat = params[:lat]
     @lng = params[:lng]
     
-    @districts = District.lookup(@lat, @lng) if @lat && @lng
+    @districts = District.lookup(@lat, @lng) if !@lat.blank? && !@lng.blank?
     if @districts && @districts.any?
       @federal = @districts.find{|d| d.level == 'federal' }
       @upper = @districts.find{|d| d.level == 'state_upper' }
