@@ -2,7 +2,7 @@ class UpdateDistrictNames < ActiveRecord::Migration
   def self.up
 
     # West Virginia Senate District 8 & 17 will be formatted properly; right now it comes back as District 817.
-    execute "UPDATE districts SET name = '8 & 17' WHERE level = 'state_upper' AND state = '54' AND name = '817' LIMIT 1"
+    execute "UPDATE districts SET name = '8 & 17' WHERE level = 'state_upper' AND state = '54' AND name = '817'"
     
     ## Alaska State Senate districts will no longer be padded with zeroes; i.e. "L", not "00L"
     ("A".."T").to_a.each {|z| execute "UPDATE districts SET name='#{z}' WHERE name = '00#{z}'" }
@@ -66,7 +66,7 @@ class UpdateDistrictNames < ActiveRecord::Migration
   }
 
   def self.down
-    execute "UPDATE districts SET name = '817' WHERE level = 'state_upper' AND state = '54' AND name = '8 & 17' LIMIT 1"
+    execute "UPDATE districts SET name = '817' WHERE level = 'state_upper' AND state = '54' AND name = '8 & 17'"
   
     ("A".."T").to_a.each {|z| execute "UPDATE districts SET name='00#{z}' WHERE name = '#{z}'" }
 
