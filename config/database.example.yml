@@ -11,7 +11,7 @@ test:
   username: postgres
   password:
   host: localhost
-  
+
 production:
   adapter: postgresql
   database: congress_production
