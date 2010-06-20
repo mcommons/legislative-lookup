@@ -1,11 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
-  
-  map.connect '/', :controller => 'districts', :action => 'lookup'
 
-  map.connect 'districts/lookup.:format', :controller => 'districts', :action => 'lookup'
+  map.root :controller => 'districts', :action => 'lookup'
+
   map.connect 'districts/polygon.:format', :controller => 'districts', :action => 'polygon'
-  
+  map.lookup 'districts/lookup.:format', :controller => 'districts', :action => 'lookup'
+
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
@@ -23,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments
