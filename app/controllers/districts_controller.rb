@@ -1,23 +1,21 @@
 class DistrictsController < ApplicationController
-  
+
   def lookup
     @lat = params[:lat]
     @lng = params[:lng]
-    
-    @districts = District.lookup(@lat, @lng) if !@lat.blank? && !@lng.blank?
-    if @districts && @districts.any?
-      @federal = @districts.find{|d| d.level == 'federal' }
-      @upper = @districts.find{|d| d.level == 'state_upper' }
-      @lower = @districts.find{|d| d.level == 'state_lower' }
+
+    if @lat.present? && @lng.present?
+      @districts = District.lookup(@lat, @lng)
     end
-    respond_to do | type |
-      type.js do 
+
+    respond_to do |type|
+      type.js do
         load_google_map
         render :layout => false
       end
-      type.html do 
+      type.html do
         load_google_map
-        render :layout => 'maps' 
+        render :layout => 'maps'
       end
       type.xml { render :layout => false}
       type.kml { render :layout => false}
@@ -27,10 +25,10 @@ class DistrictsController < ApplicationController
         args[:callback] = params[:callback] if params[:callback]
         render args
       }
-      
+
     end
   end
-  
+
   def polygon
     @district = District.find(:first, :conditions =>{ :state => District::STATES[params[:state]], :name => params[:district], :level => params[:level]})
 
@@ -42,7 +40,7 @@ class DistrictsController < ApplicationController
     @center = GLatLng.from_georuby(poly.envelope.center)
     @polygon = GPolygon.from_georuby(poly,"#000000",0,0.0,"#ff0000",0.3)
   end
-  
+
   def mdata
     geocoder = Graticule.service(:google).new(Ym4r::GmPlugin::ApiKey.get())
     location = geocoder.locate(params[:args])
@@ -50,37 +48,28 @@ class DistrictsController < ApplicationController
     @districts = @districts.find_all{|d| !d.level.blank? }
     render :layout => false
   end
-    
-  private 
+
+  private
   def load_google_map
     @map = GMap.new("map_div")
     @map.control_init(:large_map => true, :map_type => true)
-    if @districts 
 
+    if @districts
       @map.center_zoom_init([params[:lat], params[:lng]],6)
-      
-      federal_poly = @federal.the_geom[0]
-      upper_poly   = @upper.the_geom[0]
-      lower_poly   = @lower.the_geom[0] if @lower
-      
-      envelope = federal_poly.envelope
+
+      envelope = @districts.detect{|d| d.level == 'federal' }.the_geom[0].envelope
 
       @map = Variable.new("map")
-      
-      @polygons = []
-      @polygons << GPolygon.from_georuby(federal_poly,"#000000",0,0.0,"#ff0000",0.3)
-      @polygons << GPolygon.from_georuby(upper_poly,  "#000000",0,0.0,"#00ff00",0.3)
-      @polygons << GPolygon.from_georuby(lower_poly,  "#000000",0,0.0,"#0000ff",0.3) if lower_poly
 
       @center = GLatLng.from_georuby(envelope.center)
       @zoom = @map.get_bounds_zoom_level(GLatLngBounds.from_georuby(envelope))
-      
+
     else
       @map.center_zoom_init([33, -87],6)
       @message = "That lat/lng is not inside a congressional district"
     end
   end
-  
+
   def districts_to_json
     hash = {
       :lat=>params[:lat],
@@ -91,9 +80,9 @@ class DistrictsController < ApplicationController
        :state        => d.state_name,
        :district     => d.name,
        :display_name => d.display_name
-      }          
+      }
     end
     hash
   end
-  
+
 end

@@ -9,21 +9,39 @@
 #  name          :string(90)
 #  lsad_trans    :string(50)
 #  the_geom      :geometry        multi_polygon, -1
-#  state_name    :string(255)
 #  level         :string(255)
 #  census_geo_id :string(255)
 #
-
 class District < ActiveRecord::Base
-  
-  def self.lookup(lat, lng)
-    all(:conditions => ["ST_Contains(the_geom, GeometryFromText('POINT(? ?)', -1))",lng.to_f,lat.to_f])
-  end
-  
+
+  COLORS = {
+    'federal' => 'red',
+    'state_upper' => 'green',
+    'state_lower' => 'blue'
+  }.freeze
+
+  DESCRIPTION = {
+    'federal' => 'Congressional District',
+    'state_upper' => 'Upper House District',
+    'state_lower' => 'Lower House District'
+  }.freeze
+
+  named_scope :lookup, lambda {|lat, lng|
+    {:conditions => ["ST_Contains(the_geom, GeometryFromText('POINT(? ?)', -1))",lng.to_f,lat.to_f]}
+  }
+
   def polygon
     @polygon ||= the_geom[0]
   end
-  
+
+  def color
+    COLORS.fetch(level)
+  end
+
+  def state_name
+    FIPS_CODES[self.state]
+  end
+
   def display_name
     if /^\d*$/ =~ name
       "#{state_name} #{name.to_i.ordinalize}"
@@ -31,22 +49,26 @@ class District < ActiveRecord::Base
       "#{state_name} #{name}"
     end
   end
-  
-  def title
-    "#{display_name} #{level_name} District"
+
+  # def title
+  #   "#{display_name} #{level_name} District"
+  # end
+
+  # def level_name
+  #   LEVELS[level]
+  # end
+
+  # LEVELS = {
+  #   "state_upper" => "State Upper Legislative",
+  #   "state_lower" => "State Lower Legislative",
+  #   "federal" => "Congressional"
+  # }
+
+  def full_name
+    "#{display_name} #{DESCRIPTION.fetch(level)}"
   end
-  
-  def level_name
-    LEVELS[level]
-  end
-  
-  LEVELS = {
-    "state_upper" => "State Upper Legislative",
-    "state_lower" => "State Lower Legislative",
-    "federal" => "Congressional"
-  }
-  
-  FIPS_CODES = { 
+
+  FIPS_CODES = {
     "01" => "AL",
     "02" => "AK",
     "04" => "AZ",
