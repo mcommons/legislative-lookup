@@ -39,6 +39,11 @@ class DistrictsController < ApplicationController
     @zoom = @map.get_bounds_zoom_level(GLatLngBounds.from_georuby(poly.envelope))
     @center = GLatLng.from_georuby(poly.envelope.center)
     @polygon = GPolygon.from_georuby(poly,"#000000",0,0.0,"#ff0000",0.3)
+
+  private
+
+  def load_envelope
+    @envelope = @districts.federal.first.the_geom.envelope if @districts
   end
 
   def mdata
