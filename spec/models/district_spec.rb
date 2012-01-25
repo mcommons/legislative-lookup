@@ -22,3 +22,19 @@ describe District do
     districts.size.should == 0
   end
 end
+# == Schema Information
+#
+# Table name: districts
+#
+#  gid           :integer         not null
+#  state         :string(2)
+#  cd            :string(3)
+#  lsad          :string(2)
+#  name          :string(90)
+#  lsad_trans    :string(50)
+#  the_geom      :geometry        multi_polygon, -1
+#  state_name    :string(255)
+#  level         :string(255)
+#  census_geo_id :string(255)
+#
+

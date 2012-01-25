@@ -30,7 +30,7 @@ fieldset { border:0px; }
 #headerSubWrap {
   width:100%;
   float:left;
-  background:#fff url(../images/liner_bg.jpg) repeat-x left 43px;
+  background:#fff url(../images/liner_bg_yellow.jpg) repeat-x left 43px;
 }
 #header {
   margin:0px auto;
@@ -65,7 +65,7 @@ fieldset { border:0px; }
 /*						GLOBAL STYLES						*/
 
 a, a:visited	{
-	color: #5c832f;
+	color: #000;
 }
 a:hover	{
 	color: #cb6405;
@@ -106,7 +106,7 @@ h3	{
 #header h1	{
 	width: 205px;
 	height: 43px;
-	background: url(../images/header_h1.jpg) no-repeat left top;
+	background: url(../images/mcommons_banner_sm.jpg) no-repeat left top;
 }
 #header h1 a, #header h1 a:visited	{
 	height: 43px;

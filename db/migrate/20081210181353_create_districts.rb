@@ -3,7 +3,10 @@ class CreateDistricts < ActiveRecord::Migration
     config = Rails::Configuration.new
     db     = config.database_configuration[RAILS_ENV]["database"]
     user   = config.database_configuration[RAILS_ENV]["username"]
-    `psql -d #{db} -f #{RAILS_ROOT}/db/congress.sql -U #{user}`
+    
+    cmd = "psql -h127.0.0.1 -d #{db} -f #{RAILS_ROOT}/db/congress.sql -U #{user}"
+    puts "Running `#{cmd}`"
+    `#{cmd}`
         
     add_index "districts", "the_geom", :spatial=>true
     

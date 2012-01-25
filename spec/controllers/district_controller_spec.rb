@@ -37,4 +37,10 @@ describe DistrictsController do
     response.should be_success
     assigns[:lower].should be_nil
   end
+
+  it "should allow lookups via json" do
+    get :lookup, :lat => 36.158887, :lng => -86.782056, :format => 'json'
+    response.should be_success
+  end
+
 end

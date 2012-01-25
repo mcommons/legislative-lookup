@@ -4,6 +4,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/', :controller => 'districts', :action => 'lookup'
 
   map.connect 'districts/lookup.:format', :controller => 'districts', :action => 'lookup'
+  map.connect 'districts/polygon.:format', :controller => 'districts', :action => 'polygon'
+  
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'

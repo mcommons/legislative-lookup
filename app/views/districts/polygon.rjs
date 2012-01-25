@@ -1,0 +1,2 @@
+page << @map.add_overlay(@polygon)
+page << @map.set_center(@center,@zoom)

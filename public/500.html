@@ -1,33 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" <%= GMap::VML_NAMESPACE %> >
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>We're sorry, but something went wrong (500)</title>
-	<style type="text/css">
-		body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-		div.dialog {
-			width: 25em;
-			padding: 0 4em;
-			margin: 4em auto 0 auto;
-			border: 1px solid #ccc;
-			border-right-color: #999;
-			border-bottom-color: #999;
-		}
-		h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-	</style>
+  <title>Mobile Commons Legislative Lookup</title>
+  <%= stylesheet_link_tag 'application' %>
 </head>
-
-<body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
-    <p>We've been notified about this issue and we'll take a look at it shortly.</p>
-    <p><small>(If you're the administrator of this website, then please read
-    the log file "<%=h RAILS_ENV %>.log"
-    to find out what went wrong.)</small></p>
-  </div>
+	
+<body id="sub">
+	<div id="wrap">
+		<div id="headerSubWrap">
+			<div id="header">
+				<ul>
+					<li><a href="http://mcommons.com/">Our Products</a></li>
+					<li><a href="http://mcommons.com/our-customers">Our Customers</a></li>
+					<li><a href="http://mcommons.com/blog">Blog</a></li>
+					<li><a href="http://mcommons.com/developers">Developers</a></li>
+					<li class="last"><a href="http://mcommons.com/about-us">About Us</a></li>
+				</ul>		<h1><a href="http://mcommons.com/"><strong>Mobile Commons</strong></a></h1>
+			</div>
+			<div id="liner">
+			</div>
+		</div>
+		<div id="contentWrap">
+			<div id="main">
+				<div id="content">
+					Uh-oh!  Something went wrong, but we've been notified.  If it's urgent, please email us at support@mcommons.com.
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<p>
+				Copyright &copy; 2008 Mobile Commons, All rights reserved.<br />
+			</p>
+		</div>
+	</div>
 </body>
 </html>

@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: districts
+#
+#  gid           :integer         not null
+#  state         :string(2)
+#  cd            :string(3)
+#  lsad          :string(2)
+#  name          :string(90)
+#  lsad_trans    :string(50)
+#  the_geom      :geometry        multi_polygon, -1
+#  state_name    :string(255)
+#  level         :string(255)
+#  census_geo_id :string(255)
+#
+
 class District < ActiveRecord::Base
   
   def self.lookup(lat, lng)
@@ -15,6 +31,20 @@ class District < ActiveRecord::Base
       "#{state_name} #{name}"
     end
   end
+  
+  def title
+    "#{display_name} #{level_name} District"
+  end
+  
+  def level_name
+    LEVELS[level]
+  end
+  
+  LEVELS = {
+    "state_upper" => "State Upper Legislative",
+    "state_lower" => "State Lower Legislative",
+    "federal" => "Congressional"
+  }
   
   FIPS_CODES = { 
     "01" => "AL",
@@ -79,4 +109,6 @@ class District < ActiveRecord::Base
     "78" => "VI"
     
     }
+  STATES = FIPS_CODES.invert.freeze
 end
+

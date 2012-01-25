@@ -1,6 +1,6 @@
 === Project Ligerhorn
  
-- [Code on GitHub]( http://github.com/mcommons/ligerhorn )
+- [Code on GitHub](http://github.com/mcommons/ligerhorn)
  
 === Description
  
@@ -8,19 +8,19 @@ Rails application and database to lookup congressional and state legislative dis
 
 === Installation
 
-Postgres, postGIS, 
+Postgres, postGIS
 
 === Authors
 
- - [Nathan Woodhull](mailto:woodhull@gmail.com)
- - [Benjamin Stein](mailto:ben@mobilecommons.com)
- - [Mal McKay](mailto:mal@mobilecommons.com)
+ - [Nathan Woodhull](mailto:nathan@mcommons.com)
+ - [Benjamin Stein](mailto:ben@mcommons.com)
+ - [Mal McKay](mailto:mal@mcommons.com)
 
-Project sponsored by [Mobile Commons]( http://mobilecommons.com/ )
+Project sponsored by [Mobile Commons](http://mcommons.com/)
 
 === License
 
-Copyright (c) 2009 Mobile Commons
+Copyright (c) 2008 Mobile Commons
 See MIT-LICENSE in this directory.
 
 

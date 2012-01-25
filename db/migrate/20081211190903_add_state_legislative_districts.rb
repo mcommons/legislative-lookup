@@ -3,13 +3,12 @@ class AddStateLegislativeDistricts < ActiveRecord::Migration
     config = Rails::Configuration.new
     db     = config.database_configuration[RAILS_ENV]["database"]
     user   = config.database_configuration[RAILS_ENV]["username"]
-    
-    `tar xzf #{RAILS_ROOT}/db/state_sql_files.tar.gz -C #{RAILS_ROOT}/db`
+     
     (1..72).each do | n |
       n = n.to_s.rjust(2, '0')
       
-      `psql -d #{db} -f #{RAILS_ROOT}/db/state/lower/senate_lower_#{n}.sql -U #{user}`
-      `psql -d #{db} -f #{RAILS_ROOT}/db/state/upper/senate_upper_#{n}.sql -U #{user}`
+      `psql -h127.0.0.1 -d #{db} -f #{RAILS_ROOT}/db/state/lower/senate_lower_#{n}.sql -U #{user}`
+      `psql -h127.0.0.1 -d #{db} -f #{RAILS_ROOT}/db/state/upper/senate_upper_#{n}.sql -U #{user}`
     end
     
     change_column(:districts, :cd, :string, :limit => 3)
