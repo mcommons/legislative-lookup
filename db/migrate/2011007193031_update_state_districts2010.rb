@@ -1,16 +1,18 @@
 class UpdateStateDistricts2010 < ActiveRecord::Migration
   def self.up
     # config = Rails::Configuration.new
+    # host   = config.database_configuration[RAILS_ENV]["host"]
     # db     = config.database_configuration[RAILS_ENV]["database"]
     # user   = config.database_configuration[RAILS_ENV]["username"]
-     
+    
+    # 20081211190903_add_state_legislative_districts.rb shows how to create the sql files this migration needs.
+
     # execute "DELETE from districts where level IN ('state_lower','state_upper')"
     
     # (1..72).each do | n |
     #   n = n.to_s.rjust(2, '0')
-      
-    #   `psql -h127.0.0.1 -d #{db} -f #{RAILS_ROOT}/db/state2010/lower/senate_lower_#{n}.sql -U #{user}`
-    #   `psql -h127.0.0.1 -d #{db} -f #{RAILS_ROOT}/db/state2010/upper/senate_upper_#{n}.sql -U #{user}`
+    #   `psql -h #{host} -d #{db} -f #{RAILS_ROOT}/db/state2010/lower/senate_lower_#{n}.sql -U #{user}`
+    #   `psql -h #{host} -d #{db} -f #{RAILS_ROOT}/db/state2010/upper/senate_upper_#{n}.sql -U #{user}`
     # end
     
     # execute "INSERT INTO districts (state, cd, lsad, name, lsad_trans, the_geom, level) 
