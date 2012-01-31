@@ -5,6 +5,17 @@ class AddStateLegislativeDistricts < ActiveRecord::Migration
     db     = config.database_configuration[RAILS_ENV]["database"]
     user   = config.database_configuration[RAILS_ENV]["username"]
     
+    # This migration depends on a tar.gz file containing sql files for each state which were generated with something like this:
+    # (1..72).each do | n |
+    #   if n == 1 
+    #     cmd = 'c'
+    #   else
+    #     cmd = 'a'
+    #   end
+    #   n = n.to_s.rjust(2, '0')
+    #   `shp2pgsql -#{cmd} sl#{n}_d11_shp/sl#{n}_d11.shp lower_districts > state/lower/senate_lower_#{n}.sql`
+    #   `shp2pgsql -#{cmd} su#{n}_d11_shp/su#{n}_d11.shp upper_districts > state/upper/senate_upper_#{n}.sql`
+    # end
     `tar xzf #{RAILS_ROOT}/db/state_sql_files.tar.gz -C #{RAILS_ROOT}/db`
     (1..72).each do | n |
       n = n.to_s.rjust(2, '0')
