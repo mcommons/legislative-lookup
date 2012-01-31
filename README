@@ -18,8 +18,7 @@ sudo -u postgres createdb -E UTF8 $DB
 createlang -h localhost -U postgres plpgsql $DB
 psql -h localhost -U postgres -d $DB -f /usr/share/postgresql/8.4/contrib/postgis-1.5/postgis.sql
 psql -h localhost -U postgres -d $DB -f /usr/share/postgresql/8.4/contrib/postgis-1.5/spatial_ref_sys.sql
-psql -h localhost -U postgres -d $DB -c "select postgis_lib_version();"
-psql -h localhost -U postgres -d $DB -f db/congress.sql
+psql -h localhost -U postgres -d $DB -c "select postgis_lib_version();" # to make sure postgis works
 PATH=/var/lib/gems/1.8/bin/:$PATH rake db:migrate # PATH setting needed for old fashioned system wide installation and shouldn't be needed if using rvm
 
 === Authors
