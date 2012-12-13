@@ -21,6 +21,17 @@ psql -h localhost -U postgres -d $DB -f /usr/share/postgresql/8.4/contrib/postgi
 psql -h localhost -U postgres -d $DB -c "select postgis_lib_version();" # to make sure postgis works
 PATH=/var/lib/gems/1.8/bin/:$PATH rake db:migrate # PATH setting needed for old fashioned system wide installation and shouldn't be needed if using rvm
 
+On OSX:
+Download postgres.app from http://postgresapp.com/.
+Extract it.
+Copy it to Applications.
+$ sudo cp /Applications/Postgres.app/Contents/MacOS/lib/libjpeg* /usr/local/lib # to make postgis work with postgres.app
+Run postgres.app.
+$ DB="legislative_lookup_dev" # or whatever you want to call it
+$ psql -h localhost -c "CREATE DATABASE $DB;"
+$ psql -h localhost -d $DB -c "CREATE EXTENSION postgis;"
+
+
 === Authors
 
  - [Nathan Woodhull](mailto:woodhull@gmail.com)
