@@ -2,7 +2,12 @@ The basic process for updating district data is:
 1. Download a shape file with the new data.
 2. Use shp2pgsql to convert the shape file to sql which will put it in a temporary table.
 3. Run that sql.
-4. Run a transaction which copies the needed data from the temp table into the final table and fixes it up.
+4. Copy and convert the needed data from the temp table into the final table and fix it up.
+5. Delete the temp table.
+
+If the data has the same schema as the final table, you can skip the temp table.
+
+If you're updating many states that have the same format, eg if it's all from census.gov, you can do them all at once like the add_state_legislative_districts migration does. If the different states have different fields, you'll need a customized query for each that copies it to the final table.
 
 You basically want to do the same thing as the following migrations, other than creating indices:
 20081210181353_create_districts.rb
@@ -10,6 +15,4 @@ You basically want to do the same thing as the following migrations, other than 
 20090313165121_change_dc_congressional_district_to1.rb
 20090624155133_update_district_names.rb
 
-If the data has the same schema as the final table, you can obviously skip the temp table.
-
-If all the data has the same format, eg if it's all from census.gov, you can do them all at once like the add_state_legislative_districts migration does. If the different states have different fields, you'll need a customized query for each that copies it to the final table.
+Migration 2011007193031_update_state_districts2010.rb has some commented out incomplete code which shows the idea of inserting to a temp table and then copying to the final table.
