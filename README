@@ -8,7 +8,19 @@ Rails application and database to lookup congressional and state legislative dis
 
 === Installation
 
-Postgres, postGIS, 
+Install Postgres and postGIS, set up a database, and populate it.
+
+On ubuntu:
+sudo apt-get install postgresql-contrib postgresql postgresql-8.4-postgis
+# Postgres won't let you connect without a password out of the box. Create a new postgres user with a password or configure postgres to trust all connections from localhost and make sure the "postgres" user in postgres doesn't have a password. These instruction assume the later.
+DB="legislative_lookup_dev" # or whatever you want to call it
+sudo -u postgres createdb -E UTF8 $DB
+createlang -h localhost -U postgres plpgsql $DB
+psql -h localhost -U postgres -d $DB -f /usr/share/postgresql/8.4/contrib/postgis-1.5/postgis.sql
+psql -h localhost -U postgres -d $DB -f /usr/share/postgresql/8.4/contrib/postgis-1.5/spatial_ref_sys.sql
+psql -h localhost -U postgres -d $DB -c "select postgis_lib_version();"
+psql -h localhost -U postgres -d $DB -f db/congress.sql
+PATH=/var/lib/gems/1.8/bin/:$PATH rake db:migrate # PATH setting needed for old fashioned system wide installation and shouldn't be needed if using rvm
 
 === Authors
 
