@@ -6,7 +6,6 @@ raise "To avoid rake task loading problems: run 'rake clobber' in vendor/plugins
 # it if it is.  If not, use the gem version.
 rspec_base = File.expand_path(File.dirname(__FILE__) + '/../../vendor/plugins/rspec/lib')
 $LOAD_PATH.unshift(rspec_base) if File.exist?(rspec_base)
-#require 'spec/rake/spectask'
 require "rspec/core/rake_task" # RSpec 2.0
 
 spec_prereq = File.exist?(File.join(RAILS_ROOT, 'config', 'database.yml')) ? "db:test:prepare" : :noop
