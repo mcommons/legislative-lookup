@@ -6,7 +6,8 @@ raise "To avoid rake task loading problems: run 'rake clobber' in vendor/plugins
 # it if it is.  If not, use the gem version.
 rspec_base = File.expand_path(File.dirname(__FILE__) + '/../../vendor/plugins/rspec/lib')
 $LOAD_PATH.unshift(rspec_base) if File.exist?(rspec_base)
-require 'spec/rake/spectask'
+#require 'spec/rake/spectask'
+require "rspec/core/rake_task" # RSpec 2.0
 
 spec_prereq = File.exist?(File.join(RAILS_ROOT, 'config', 'database.yml')) ? "db:test:prepare" : :noop
 task :noop do
@@ -18,14 +19,14 @@ task :stats => "spec:statsetup"
 desc "Run all specs in spec directory (excluding plugin specs)"
 Spec::Rake::SpecTask.new(:spec => spec_prereq) do |t|
   t.spec_opts = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
-  t.spec_files = FileList['spec/**/*_spec.rb']
+  t.pattern = 'spec/**/*_spec.rb'
 end
 
 namespace :spec do
   desc "Run all specs in spec directory with RCov (excluding plugin specs)"
   Spec::Rake::SpecTask.new(:rcov) do |t|
     t.spec_opts = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
-    t.spec_files = FileList['spec/**/*_spec.rb']
+    t.pattern = 'spec/**/*_spec.rb'
     t.rcov = true
     t.rcov_opts = lambda do
       IO.readlines("#{RAILS_ROOT}/spec/rcov.opts").map {|l| l.chomp.split " "}.flatten
@@ -35,34 +36,34 @@ namespace :spec do
   desc "Print Specdoc for all specs (excluding plugin specs)"
   Spec::Rake::SpecTask.new(:doc) do |t|
     t.spec_opts = ["--format", "specdoc", "--dry-run"]
-    t.spec_files = FileList['spec/**/*_spec.rb']
+    t.pattern = 'spec/**/*_spec.rb'
   end
 
   desc "Print Specdoc for all plugin specs"
   Spec::Rake::SpecTask.new(:plugin_doc) do |t|
     t.spec_opts = ["--format", "specdoc", "--dry-run"]
-    t.spec_files = FileList['vendor/plugins/**/spec/**/*_spec.rb'].exclude('vendor/plugins/rspec/*')
+    t.pattern = Dir['vendor/plugins/**/spec/**/*_spec.rb'].reject{ |f| f['vendor/plugins/rspec'] }
   end
 
   [:models, :controllers, :views, :helpers, :lib].each do |sub|
     desc "Run the specs under spec/#{sub}"
     Spec::Rake::SpecTask.new(sub => spec_prereq) do |t|
       t.spec_opts = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
-      t.spec_files = FileList["spec/#{sub}/**/*_spec.rb"]
+      t.pattern = "spec/#{sub}/**/*_spec.rb"
     end
   end
   
   desc "Run the specs under vendor/plugins (except RSpec's own)"
   Spec::Rake::SpecTask.new(:plugins => spec_prereq) do |t|
     t.spec_opts = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
-    t.spec_files = FileList['vendor/plugins/**/spec/**/*_spec.rb'].exclude('vendor/plugins/rspec/*').exclude("vendor/plugins/rspec-rails/*")
+    t.pattern = Dir['vendor/plugins/**/spec/**/*_spec.rb'].reject{ |f| f['vendor/plugins/rspec'] || f['vendor/plugins/rspec-rails'] }
   end
   
   namespace :plugins do
     desc "Runs the examples for rspec_on_rails"
     Spec::Rake::SpecTask.new(:rspec_on_rails) do |t|
       t.spec_opts = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
-      t.spec_files = FileList['vendor/plugins/rspec-rails/spec/**/*_spec.rb']
+      t.pattern = 'vendor/plugins/rspec-rails/spec/**/*_spec.rb'
     end
   end
 
