@@ -16,7 +16,7 @@
           } else {
             $('lat').value = point.lat();
             $('lng').value = point.lng(); 
-            $('lat_lng_form').request(); 
+            $('lat_lng_form').request({onFailure:function(request){alert('Address not found')}}); 
           }
         }
       );
@@ -70,7 +70,7 @@
 
 <h4>API Documentation</h4>
 <p>
-  This web service matches a latitude and longitude with the congressional and state legislative districts for that location. It is provided free of charge with no warranty. If you use this service please cache your responses and behave responsibly. If you plan to send more than a few thousand queries per day, let us know via the list before you start. 
+  Mobile Commons Legislative Lookup matches a latitude and longitude with the congressional and state legislative districts for that location. It is provided free of charge with no warranty. If you use this service please cache your responses and behave responsibly. If you plan to send more than a few thousand queries per day, let us know via the list before you start. 
   <p>
   Join our <a href="http://groups.google.com/group/mcommons-congress-api">low volume mailing list</a> for advance notice of API changes or to ask a question. 
   </p>

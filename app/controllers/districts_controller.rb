@@ -59,23 +59,21 @@ class DistrictsController < ApplicationController
 
       @map.center_zoom_init([params[:lat], params[:lng]],6)
       
-      federal_poly = @federal.the_geom[0] if @federal
-      upper_poly   = @upper.the_geom[0] if @upper
+      federal_poly = @federal.the_geom[0]
+      upper_poly   = @upper.the_geom[0]
       lower_poly   = @lower.the_geom[0] if @lower
       
-      envelope = federal_poly.envelope if @federal
+      envelope = federal_poly.envelope
 
       @map = Variable.new("map")
       
       @polygons = []
-      @polygons << GPolygon.from_georuby(federal_poly,"#000000",0,0.0,"#ff0000",0.3) if federal_poly
-      @polygons << GPolygon.from_georuby(upper_poly,  "#000000",0,0.0,"#00ff00",0.3) if upper_poly
+      @polygons << GPolygon.from_georuby(federal_poly,"#000000",0,0.0,"#ff0000",0.3)
+      @polygons << GPolygon.from_georuby(upper_poly,  "#000000",0,0.0,"#00ff00",0.3)
       @polygons << GPolygon.from_georuby(lower_poly,  "#000000",0,0.0,"#0000ff",0.3) if lower_poly
 
-      if @federal
-        @center = GLatLng.from_georuby(envelope.center)
-        @zoom = @map.get_bounds_zoom_level(GLatLngBounds.from_georuby(envelope))
-      end
+      @center = GLatLng.from_georuby(envelope.center)
+      @zoom = @map.get_bounds_zoom_level(GLatLngBounds.from_georuby(envelope))
       
     else
       @map.center_zoom_init([33, -87],6)
