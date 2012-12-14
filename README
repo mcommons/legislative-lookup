@@ -1,6 +1,6 @@
 === Project Ligerhorn
  
-- [Code on GitHub]( http://github.com/mcommons/ligerhorn )
+- [Code on GitHub](http://github.com/mcommons/ligerhorn)
  
 === Description
  
@@ -10,39 +10,45 @@ Rails application and database to lookup congressional and state legislative dis
 
 Install Postgres and postGIS, set up a database, and populate it.
 
-On ubuntu:
-sudo apt-get install postgresql-contrib postgresql postgresql-8.4-postgis
-# Postgres won't let you connect without a password out of the box. Create a new postgres user with a password or configure postgres to trust all connections from localhost and make sure the "postgres" user in postgres doesn't have a password. These instruction assume the later.
-DB="legislative_lookup_dev" # or whatever you want to call it
+==== Ubuntu 11.04 Start
+sudo apt-get install postgresql-contrib postgresql postgresql-8.4-postgis libpq-dev # libpq-dev needed for gem
+# Postgres won't let you connect without a password out of the box. Create a new postgres user with a password or configure postgres to trust all connections from localhost and make sure the "postgres" user in postgres doesn't have a password. These instruction assume the later. You can do that by editing /etc/postgresql/8.4/main/pg_hba.conf and adding a line ABOVE THE DEFAULT RULES like this:
+# host    all         postgres    127.0.0.1/32          trust
+DB="congress_development" # or whatever you want to call it
 sudo -u postgres createdb -E UTF8 $DB
 createlang -h localhost -U postgres plpgsql $DB
 psql -h localhost -U postgres -d $DB -f /usr/share/postgresql/8.4/contrib/postgis-1.5/postgis.sql
 psql -h localhost -U postgres -d $DB -f /usr/share/postgresql/8.4/contrib/postgis-1.5/spatial_ref_sys.sql
 psql -h localhost -U postgres -d $DB -c "select postgis_lib_version();" # to make sure postgis works
-PATH=/var/lib/gems/1.8/bin/:$PATH rake db:migrate # PATH setting needed for old fashioned system wide installation and shouldn't be needed if using rvm
 
-On OSX:
+==== OSX 10.7 Start
 Download postgres.app from http://postgresapp.com/.
 Extract it.
 Copy it to Applications.
 $ sudo cp /Applications/Postgres.app/Contents/MacOS/lib/libjpeg* /usr/local/lib # to make postgis work with postgres.app
 Run postgres.app.
-$ DB="legislative_lookup_dev" # or whatever you want to call it
+$ DB="congress_development" # or whatever you want to call it
 $ psql -h localhost -c "CREATE DATABASE $DB;"
 $ psql -h localhost -d $DB -c "CREATE EXTENSION postgis;"
 
+==== Common Finish
+gem install postgres -v '0.7.9.2008.01.28' # this is what's used in production
+./script/server
+# Visit http://localhost:3000/. The page should load although nothing will work yet because there's no data in the database.
+rake db:migrate
+# If ruby is installed system-wide (ie not with rvm) and PATH isn't set up properly, you might need to run it with something like:
+# PATH=/var/lib/gems/1.8/bin/:$PATH rake db:migrate
 
 === Authors
 
- - [Nathan Woodhull](mailto:woodhull@gmail.com)
- - [Benjamin Stein](mailto:ben@mobilecommons.com)
- - [Mal McKay](mailto:mal@mobilecommons.com)
+ - [Nathan Woodhull](mailto:nathan@mcommons.com)
+ - [Benjamin Stein](mailto:ben@mcommons.com)
+ - [Mal McKay](mailto:mal@mcommons.com)
+ - [Daniel Benamy](mailto:dbenamy@mcommons.com)
 
-Project sponsored by [Mobile Commons]( http://mobilecommons.com/ )
+Project sponsored by [Mobile Commons](http://www.mobilecommons.com/)
 
 === License
 
-Copyright (c) 2009 Mobile Commons
+Copyright (c) 2008-2012 Mobile Commons
 See MIT-LICENSE in this directory.
-
-

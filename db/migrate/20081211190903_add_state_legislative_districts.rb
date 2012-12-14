@@ -19,7 +19,6 @@ class AddStateLegislativeDistricts < ActiveRecord::Migration
     `tar xzf #{RAILS_ROOT}/db/state_sql_files.tar.gz -C #{RAILS_ROOT}/db`
     (1..72).each do | n |
       n = n.to_s.rjust(2, '0')
-      
       `psql -h #{host} -d #{db} -f #{RAILS_ROOT}/db/state/lower/senate_lower_#{n}.sql -U #{user}`
       `psql -h #{host} -d #{db} -f #{RAILS_ROOT}/db/state/upper/senate_upper_#{n}.sql -U #{user}`
     end

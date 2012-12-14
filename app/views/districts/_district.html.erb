@@ -1,0 +1,9 @@
+<% @districts.each do | d | %>
+  <% case d.level when 'federal' %>
+    <span class="federal"> <%= d.display_name %> Congressional District</span>
+  <% when 'state_upper'%>
+    <span class="state_upper"> <%= d.display_name %> Upper House District</span>
+  <% when 'state_lower'%>
+    <span class="state_lower"> <%= d.display_name %> Lower House District</span>
+  <% end %>
+<% end %>
