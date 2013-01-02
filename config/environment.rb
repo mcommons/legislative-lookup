@@ -59,7 +59,7 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random,
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_ligerhorn_session',
+    :key => '_ligerhorn_session',
     :secret      => '6ec2b23c6635d159c6b3b61545603c3eb5bd61078341598b7c97c1030e9707e6b29d840e70aaf917cb82b9288e40b9bca67d111c490ae88c97ef7d3014c4fa35'
   }
 
