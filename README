@@ -1,9 +1,9 @@
 === Project Ligerhorn
- 
+
 - [Code on GitHub](http://github.com/mcommons/ligerhorn)
- 
+
 === Description
- 
+
 Rails application and database to lookup congressional and state legislative districts by latitude and longitude.
 
 === Installation
@@ -22,6 +22,7 @@ psql -h localhost -U postgres -d $DB -f /usr/share/postgresql/8.4/contrib/postgi
 psql -h localhost -U postgres -d $DB -c "select postgis_lib_version();" # to make sure postgis works
 
 ==== OSX 10.7 Start
+
 Download postgres.app from http://postgresapp.com/.
 Extract it.
 Copy it to Applications.
@@ -38,6 +39,12 @@ gem install postgres -v '0.7.9.2008.01.28' # this is what's used in production
 rake db:migrate
 # If ruby is installed system-wide (ie not with rvm) and PATH isn't set up properly, you might need to run it with something like:
 # PATH=/var/lib/gems/1.8/bin/:$PATH rake db:migrate
+
+Also note that you will need Ruby 1.8.x and rubygems 1.4.2, otherwise you may get an error.  Remove any version of rubygems-update that you have, then run:
+
+sudo gem install rubygems-update -v='1.4.2'
+update_rubygems
+
 
 === Authors
 

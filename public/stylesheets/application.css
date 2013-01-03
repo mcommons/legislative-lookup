@@ -205,18 +205,6 @@ div#geo-box input[type=text]#address {
   width:360px;
 }
 
-div.federal {
-  color: red;
-}
-
-div.state_lower {
-  color: blue;
-}
-
-div.state_upper {
-  color: green;
-}
-
 a.api {
   display:block;
   padding: 10px 0px 10px 0px;

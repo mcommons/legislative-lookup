@@ -1,0 +1,20 @@
+development:
+  adapter: postgresql
+  database: congress_development
+  username: postgres
+  password: 
+  host: 127.0.0.1
+
+test:
+  adapter: postgresql
+  database: congress_test
+  username: postgres
+  password:
+  host: localhost
+
+production:
+  adapter: postgresql
+  database: congress_production
+  username: deploy
+  password:
+  host: localhost
