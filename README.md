@@ -61,7 +61,7 @@ Visit http://localhost:3000/. The page should load although nothing will work ye
 
 ## Testing
 
-To run specs, you need to seed the database with sample polygons.  This repo contains sql imports for RI. To execute run:
+To run specs, you need to seed the database with sample polygons.  This repo contains sql imports for Rhode Island. To execute run:
 
     rake db:test:prepare
     rake spec
