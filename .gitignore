@@ -1,7 +1,8 @@
-<<<<<<< HEAD
 log/*.log
 tmp/**/*
 .DS_Store
-=======
 config/database.yml
->>>>>>> 4f4f044... Move config/database.yml to database.example.yml, for developer freedom
+db/downloaded_zips/*
+db/2013/zips/
+db/2013/shapes/
+db/2013/sql/
