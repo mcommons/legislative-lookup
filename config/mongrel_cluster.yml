@@ -1,8 +1,0 @@
---- 
-cwd: /apps/congress/current
-port: "8001"
-environment: production
-address: 127.0.0.1
-pid_file: /var/run/congress/mongrel.pid
-log_file: /var/log/congress/mongrel.log
-servers: 3
