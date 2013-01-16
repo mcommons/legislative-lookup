@@ -4,11 +4,10 @@
 #In production, the app can be accessed through 2 different hosts: thepochisuperstarmegashow.com and exmaple.com. There then needs a 2-key hash. If you deployed to one host, only the API key would be needed (as in development and test).
 
 development:
- bad
+  #nothing needed here.
 
 test:
-  bad
+  #nothing needed here
 
 production:
- #currently http://congress.mcommons.com/
- bad
+  #Put your production api key here.
