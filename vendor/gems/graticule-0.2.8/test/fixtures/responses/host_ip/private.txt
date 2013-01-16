@@ -1,4 +1,0 @@
-Country: (Private Address) (XX)
-City: (Private Address)
-Latitude: 
-Longitude: 

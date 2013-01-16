@@ -2,17 +2,24 @@
 #
 # Table name: districts
 #
-#  gid           :integer         not null
-#  state         :string(2)
-#  cd            :string(3)
-#  lsad          :string(2)
-#  name          :string(90)
-#  lsad_trans    :string(50)
-#  the_geom      :geometry        multi_polygon, -1
-#  level         :string(255)
-#  census_geo_id :string(255)
+#  gid      :integer          not null, primary key
+#  state    :string(2)
+#  cd       :string(3)
+#  name     :string(100)
+#  the_geom :string           multi_polygon, -1
+#  level    :string(255)
 #
+
+# Schema explanation:
+#     gid           - Postgres-assigned id
+#     state         - FIPS code
+#     name          - District name. Most are like "029" but some have crazy english names.
+#     cd            - District code. Often equivalent to name (district name), but not always. Not exposed in the api but it can be handy for matching up part of different data sets.
+#     level         - "state_lower", "state_upper", or "federal".
+#     the_geom
+
 class District < ActiveRecord::Base
+  self.primary_key = "gid"
 
   COLORS = {
     'federal' => 'red',
@@ -31,11 +38,11 @@ class District < ActiveRecord::Base
   }
 
   def polygon
-    @polygon ||= the_geom[0]
+    @polygon ||= self.the_geom[0]
   end
 
   def color
-    COLORS.fetch(level)
+    COLORS.fetch(self.level)
   end
 
   def state_name
@@ -49,20 +56,6 @@ class District < ActiveRecord::Base
       "#{state_name} #{name}"
     end
   end
-
-  # def title
-  #   "#{display_name} #{level_name} District"
-  # end
-
-  # def level_name
-  #   LEVELS[level]
-  # end
-
-  # LEVELS = {
-  #   "state_upper" => "State Upper Legislative",
-  #   "state_lower" => "State Lower Legislative",
-  #   "federal" => "Congressional"
-  # }
 
   def full_name
     "#{display_name} #{DESCRIPTION.fetch(level)}"
@@ -120,6 +113,7 @@ class District < ActiveRecord::Base
     "54" => "WV",
     "55" => "WI",
     "56" => "WY",
+    #non-states follow
     "60" => "AS",
     "64" => "FM",
     "66" => "GU",
@@ -129,7 +123,7 @@ class District < ActiveRecord::Base
     "72" => "PR",
     "74" => "UM",
     "78" => "VI"
-    }
+  }
   STATES = FIPS_CODES.invert.freeze
 end
 

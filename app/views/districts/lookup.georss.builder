@@ -6,7 +6,6 @@ xml.rss(:version => "2.0", "xmlns:georss" => GEORSS_NS) do
     xml.link(lookup_url)
 
     xml.description "Legislative Districts for #{params[:lat]}, #{params[:lng]}"
-    xml << @federal.polygon.envelope.as_georss
     @districts.each do | d |
       xml.item do
         xml.title d.display_name

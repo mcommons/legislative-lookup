@@ -1,8 +1,7 @@
 log/*.log
 tmp/**/*
 .DS_Store
-config/database.yml
-db/downloaded_zips/*
 db/2013/zips/
 db/2013/shapes/
 db/2013/sql/
+config/database.yml

@@ -15,7 +15,6 @@ class DistrictsController < ApplicationController
       end
       type.html do
         load_google_map
-        render :layout => 'maps'
       end
       type.xml { render :layout => false}
       type.kml { render :layout => false}
@@ -43,28 +42,13 @@ class DistrictsController < ApplicationController
 
   private
 
-  def load_envelope
-    @envelope = @districts.federal.first.the_geom.envelope if @districts
-  end
-
-  def mdata
-    geocoder = Graticule.service(:google).new(Ym4r::GmPlugin::ApiKey.get())
-    location = geocoder.locate(params[:args])
-    @districts = District.lookup(location.latitude, location.longitude)
-    @districts = @districts.find_all{|d| !d.level.blank? }
-    render :layout => false
-  end
-
-  private
   def load_google_map
     @map = GMap.new("map_div")
     @map.control_init(:large_map => true, :map_type => true)
 
-    if @districts
+    unless @districts.blank?
       @map.center_zoom_init([params[:lat], params[:lng]],6)
-
       envelope = @districts.detect{|d| d.level == 'federal' }.the_geom[0].envelope
-
       @map = Variable.new("map")
 
       @center = GLatLng.from_georuby(envelope.center)
@@ -77,18 +61,22 @@ class DistrictsController < ApplicationController
   end
 
   def districts_to_json
-    hash = {
-      :lat=>params[:lat],
-      :lng=>params[:lng]
-    }
-    @districts.each do |d|
-      hash[d.level] = {
-       :state        => d.state_name,
-       :district     => d.name,
-       :display_name => d.display_name
+    if params[:lat].present? && params[:lng].present?
+      hash = {
+        :lat=>params[:lat],
+        :lng=>params[:lng]
       }
+      @districts.each do |d|
+        hash[d.level] = {
+         :state        => d.state_name,
+         :district     => d.name,
+         :display_name => d.display_name
+        }
+      end
+      hash
+    else
+      {:error => "You must submit a lat and lng."}
     end
-    hash
   end
 
 end

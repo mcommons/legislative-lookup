@@ -1,4 +1,4 @@
-<%= link_to image_tag("georss.gif"), lookup_path(:format => 'georss', :lat => params[:lat], :lng => params[:lng]) %>
-<%= link_to image_tag("ge.gif"), lookup_path(:format => 'kml', :lat => params[:lat], :lng => params[:lng]) %>
-<%= link_to image_tag("xml.jpg"), lookup_path(:format => 'xml', :lat => params[:lat], :lng => params[:lng]) %>
-<%= link_to image_tag("json.gif"), lookup_path(:format => 'json', :lat => params[:lat], :lng => params[:lng]) %>
+<%= link_to 'georss', lookup_path(:format => 'georss', :lat => params[:lat], :lng => params[:lng]) %>
+<%= link_to 'kml', lookup_path(:format => 'kml', :lat => params[:lat], :lng => params[:lng]) %>
+<%= link_to 'xml', lookup_path(:format => 'xml', :lat => params[:lat], :lng => params[:lng]) %>
+<%= link_to 'json', lookup_path(:format => 'json', :lat => params[:lat], :lng => params[:lng]) %>

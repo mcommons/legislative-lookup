@@ -1,167 +1,170 @@
 * {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-	text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  text-decoration: none;
 }
 
-body	{
-	background-color: #d8c9a8;
+body  {
+  background:#fefefe url('../images/pattern_cream_dust.png') repeat 0 0;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-	color: #333333;
+  color: #333333;
 }
 blockquote{
-	margin-left: 25px;
-	margin-right: 75px;
+  margin-left: 25px;
+  margin-right: 75px;
 }
 
 p { padding: 5px 0px 5px 0px;}
+h2 span{font-size:24px;color:#444;text-shadow:1px 1px #bbb;}
 
 fieldset { border:0px; }
 
+/* PAGE LAYOUT */
 
-/*						PAGE LAYOUT						*/
-
-#wrap	{
+#wrap {
   width:100%;
-	float:left;
+  float:left;
 }
 
 #headerSubWrap {
   width:100%;
   float:left;
-  background:#fff url(../images/liner_bg_yellow.jpg) repeat-x left 43px;
+  border-bottom:25px solid #fcd800;
+  background:#fff;
 }
 #header {
   margin:0px auto;
-	width: 840px;
-}
-#liner	{
-	clear: both;
-	height: 25px;
+  width: 840px;
+  height:40px;
+  position:relative;
 }
 #contentWrap {
   width:100%;
   float:left;
-  padding:0 0 30px 0;
-  background-color:#fff;
+  padding:0 0 10px 0;
 }
 #main {
   margin:0px auto;
-  width:840px; 
+  width:840px;
 }
-#content	{
-	float: left;
-	padding: 30px 20px 30px 0;
+#content  {
+  float: left;
+  padding: 30px 20px 30px 0;
 }
 
-#footer	{
-	float:left;
+#footer {
+  float:left;
   width:100%;
-	height: 226px;
-  background: url(../images/html_bg.jpg) repeat-x left bottom;
+  height: 26px;
+  padding-bottom: 35px;
 }
+
 #footer p { margin:0px auto; width:840px; }
-/*						GLOBAL STYLES						*/
+/*            GLOBAL STYLES           */
 
-a, a:visited	{
-	color: #000;
-}
-a:hover	{
-	color: #cb6405;
-	text-decoration: underline;
-}
-h2	{
-	font: 28px/30px Georgia, "Times New Roman", Times, serif;
-}
-h3	{
-	font: bold 14px/16px Arial, Helvetica, sans-serif;
-}
-.lbord, .rbord	{
-	display: block;
-}
-.lbord	{
-	float: left;
-}
-.rbord	{
-	float: right;
-}
+a, a:visited  {
+  color: #000090;
 
-
-/*						HEADER STYLES						*/
-
-#header ul	{
-	float: right;
-	padding-top: 15px;
 }
-#header li	{
-	float: left;
-	padding: 0 4px;
-	border-right: solid 1px #853385;
-	font: 12px/14px	"Lucida Grande","Helvetice Neue",Helvetica,Verdana,Sans-serif;
+a:hover {
+  color: #cb6405;
+  text-decoration: underline;
 }
-#header li.last	{
-	border: none;
+h2  {
+  font: 28px/30px Georgia, "Times New Roman", Times, serif;
 }
-#header h1	{
-	width: 205px;
-	height: 43px;
-	background: url(../images/mcommons_banner_sm.jpg) no-repeat left top;
+h3  {
+  font: bold 14px/16px Arial, Helvetica, sans-serif;
 }
-#header h1 a, #header h1 a:visited	{
-	height: 43px;
-	display: block;
+.lbord, .rbord  {
+  display: block;
 }
-#header h1 strong	{
-	display: none;
+.lbord  {
+  float: left;
 }
-#header p	{
-	color: #fff;
-	height: 161px;
-	padding: 58px 100px 0 85px;
-	font: 26px/32px Georgia,"Lucida Grande","Helvetice Neue",Helvetica,Verdana,Sans-serif;
-}
-#header p strong	{
-	color: #c9e5fb;
-	font-weight: normal;
-}
-#header p em	{
-	color: #c9f2ba;
-	font-style: normal;
-}
-
-/*						FOOTER STYLES						*/
-
-#footer p	{
-	color: #999;
-	padding: 23px 0 0 0;
-	font: 12px/14px Georgia,"Lucida Grande","Helvetice Neue",Helvetica,Verdana,Sans-serif;
+.rbord  {
+  float: right;
 }
 
 
-/*						BODY STYLES						*/
+/*            HEADER STYLES           */
+
+#header ul  {
+  float: right;
+  padding-top: 15px;
+}
+#header li  {
+  float: left;
+  padding: 0 4px;
+  border-right: solid 1px #853385;
+  font: 12px/14px "Lucida Grande","Helvetice Neue",Helvetica,Verdana,Sans-serif;
+}
+#header li.last {
+  border: none;
+}
+#header h1  {
+  width: 300px;
+  height: 61px;
+  position:absolute;
+  top:10px;
+  left:-15px;
+  background: url(../images/logo.png) no-repeat left top;
+}
+#header h1 a, #header h1 a:visited  {
+  height: 43px;
+  display: block;
+}
+#header h1 strong {
+  display: none;
+}
+#header p {
+  color: #fff;
+  height: 161px;
+  padding: 58px 100px 0 85px;
+  font: 26px/32px Georgia,"Lucida Grande","Helvetice Neue",Helvetica,Verdana,Sans-serif;
+}
+#header p strong  {
+  color: #c9e5fb;
+  font-weight: normal;
+}
+#header p em  {
+  color: #c9f2ba;
+  font-style: normal;
+}
+
+/*            FOOTER STYLES           */
+
+#footer p {
+  color: #999;
+  padding: 23px 0 0 0;
+  font: 12px/14px Georgia,"Lucida Grande","Helvetice Neue",Helvetica,Verdana,Sans-serif;
+}
+
+
+/*            BODY STYLES           */
 
 
 #form {
-	border: none;
-	text-align: center;
-	padding-bottom:25px;
+  border: none;
+  text-align: center;
+  padding-bottom:25px;
 }
 
 #map_div{
-	margin: 0px auto;
-	width:800px;
+  margin: 0px auto 20px;
+  width:800px;
   height:400px;
 }
 
 #notice{
-	color: red;
-	padding-top:15px;
-	text-align: center;
+  color: red;
+  padding-top:15px;
+  text-align: center;
 }
 
 img {
-	border: none;
+  border: none;
 }
 
 /* boxes */
@@ -169,12 +172,15 @@ img {
 
 div#geo-box {
   margin: 30px 10px 10px 10px;
-  padding:5px 5px 5px 25px;
-  
-  border-bottom:1px solid #CCCCCC;
-  border-top:1px solid #CCCCCC;
-  height:70px;
-  background:#FEFCF1 none repeat scroll 0 0;
+  padding:5px 5px 15px 25px;
+
+  border:1px solid #CCCCCC;
+  background-color: rgb(240,240,240);
+  background-color:rgba(240,240,240,0.4);
+
+  border-radius:6px;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
 }
 div#geo-box label {
   display: block;
@@ -193,13 +199,96 @@ div#geo-box p {
 }
 
 div#geo-box input[type=submit], div#geo-box input[type=button] {
-  margin-top:34px;
+  margin-top:30px;
 }
 
 
 div#geo-box input[type=text] {
   width:160px;
+  padding:4px;
+  border:1px solid #ddd;
+  border-radius:6px;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
 }
+
+#icons{padding:0 0 0 4px;}
+#icons a{font-size:12px;text-decoration:underline;}
+
+
+/* Buttons from http://hellohappy.org/css3-buttons/ */
+.button.clean-gray {
+  background-color: #eeeeee;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: linear-gradient(top, #eeeeee, #cccccc);
+  border: 1px solid #ccc;
+  border-bottom: 1px solid #bbb;
+  border-radius: 3px;
+  color: #333;
+  font: bold 11px/1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  padding: 8px 0;
+  text-align: center;
+  text-shadow: 0 1px 0 #eee;
+  width: 150px; }
+  .button.clean-gray:hover {
+    background-color: #dddddd;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
+    background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: linear-gradient(top, #dddddd, #bbbbbb);
+    border: 1px solid #bbb;
+    border-bottom: 1px solid #999;
+    cursor: pointer;
+    text-shadow: 0 1px 0 #ddd; }
+  .button.clean-gray:active {
+    border: 1px solid #aaa;
+    border-bottom: 1px solid #888;
+    -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee; }
+
+
+.button.cupid-green {
+  background-color: #7fbf4d;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
+  background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: linear-gradient(top, #7fbf4d, #63a62f);
+  border: 1px solid #63a62f;
+  border-bottom: 1px solid #5b992b;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 0 0 #96ca6d;
+  box-shadow: inset 0 1px 0 0 #96ca6d;
+  color: #fff;
+  font: bold 11px/1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  padding: 7px 0 8px 0;
+  text-align: center;
+  text-shadow: 0 -1px 0 #4c9021;
+  width: 150px; }
+  .button.cupid-green:hover {
+    background-color: #76b347;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #76b347), color-stop(100%, #5e9e2e));
+    background-image: -webkit-linear-gradient(top, #76b347, #5e9e2e);
+    background-image: -moz-linear-gradient(top, #76b347, #5e9e2e);
+    background-image: -ms-linear-gradient(top, #76b347, #5e9e2e);
+    background-image: -o-linear-gradient(top, #76b347, #5e9e2e);
+    background-image: linear-gradient(top, #76b347, #5e9e2e);
+    -webkit-box-shadow: inset 0 1px 0 0 #8dbf67;
+    box-shadow: inset 0 1px 0 0 #8dbf67;
+    cursor: pointer; }
+  .button.cupid-green:active {
+    border: 1px solid #5b992b;
+    border-bottom: 1px solid #538c27;
+    -webkit-box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
+    box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee; }
+
 
 div#geo-box input[type=text]#address {
   width:360px;
@@ -210,7 +299,7 @@ a.api {
   padding: 10px 0px 10px 0px;
 }
 
-p.api {  padding: 55px 10px 10px 10px;}
+div.api {  padding: 20px 10px}
+.api pre code{border:2px #ccc solid;padding:0;border-width:2px 2px 6px}
 
 div#notice {}
-
