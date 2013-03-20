@@ -46,11 +46,7 @@ Run
 
 ### Common Finish: Ruby Environment
 
-    gem update --system 1.3.7 # rails 2.2 doesn't completely work with new versions of rubygems. eg: 'rake gems:refresh_specs' will fail with rubygems 1.5.2
-    gem install postgres -v '0.7.9.2008.01.28' # this is what's used in production
-    gem install rdoc
-    gem install rspec -v 1.3.2
-    gem install rspec-rails -v 1.3.4
+    bundle install
     ./script/server
 
 Visit http://localhost:3000/. The page should load although nothing will work yet because there's no data in the database. Run the following to load the full collection of shape files from census
