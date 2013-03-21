@@ -37,7 +37,7 @@ namespace :shapefiles_113 do
     p 'converting shape files into sql_files'
     `mkdir db/2013/sql`
     `rm db/2013/sql/*`
-    cmd = 'c -I' # the first run should do Create statements and add Indexes
+    cmd = 'c' # the first run should do Create statements
     District::FIPS_CODES.keys.sort.each do |fips_code|
       first_shp_name = "db/2013/shapes/PVS_12_v2_sldl_#{fips_code}.shp"
       if File.exist?(first_shp_name)
