@@ -4,7 +4,7 @@ namespace :shapefiles_113 do
   # See: https://www.census.gov/rdo/data/113th_congressional_and_new_state_legislative_district_plans.html
   #
   # Zip files include numerous unneeded mapping files (waterways info), but the files we need don't seem to be provided any other way.
-  # In addition to shape files, these zips include *.shx, *.dbf, *.prj, *.shp, *.shx
+  # In addition to shape files, these zips include *.shx, *.dbf, *.prj, *.shp
   #
   # INTERNAL NOTE: We have a copy of the needed files on dev.mcommons.com/home/rails/archive/redistricting_data_113_congress.sql.bz2
   task :download => :environment do

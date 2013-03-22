@@ -19,12 +19,11 @@ Postgres won't let you connect without a password out of the box. Create a new p
 
     host    all         postgres    127.0.0.1/32          trust
 
-After you create your database you need to add required functions to your database. Note: You'll need to do the same for your test database.
+After you create your database you need to add required functions to your database. Note: You'll need to do the same for your test database - rerun the following w/ DB="congress_test"
 
     DB="congress_development" # or whatever you want to call it
     sudo -u postgres createdb -E UTF8 $DB
     createlang -h localhost -U postgres plpgsql $DB
-    DB="congress_test"
     psql -h localhost -U postgres -d $DB -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql
     psql -h localhost -U postgres -d $DB -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql
     psql -h localhost -U postgres -d $DB -c "select postgis_lib_version();" # to make sure postgis works
@@ -91,5 +90,5 @@ Project sponsored by [Mobile Commons](http://www.mobilecommons.com/)
 
 ## License
 
-Copyright (c) 2008-2012 Mobile Commons
+Copyright (c) 2008-2013 Mobile Commons
 See MIT-LICENSE in this directory.
