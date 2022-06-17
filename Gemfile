@@ -1,5 +1,5 @@
 source :rubygems
-gem 'rails', '2.3.15' # or should it be 2.3.16?
+gem 'rails', '3.0.8' # or should it be 2.3.16?
 gem 'fastercsv', '1.5.5'
 gem 'GeoRuby', '1.3.3' # not sure if we need this. it was in vendor/gems but comment out in environment.rb
 gem 'spatial_adapter', '1.3.1'
