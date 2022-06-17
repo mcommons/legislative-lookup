@@ -13,5 +13,5 @@ group :development do
 end
 
 group :production do
-  gem 'passenger', '3.0.19'
+  gem 'passenger', '5.3.2'
 end
